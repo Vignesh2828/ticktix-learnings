@@ -41,7 +41,7 @@ const cartPage = () => {
         style={{ marginBottom: "20px", padding: "10px", background: "#f0f0f0" }}
       >
         <Link href={"/"}>
-          <button style={homeButtonStyle}>go to home</button>
+          <button style={homeButtonStyle}>Go to home</button>
         </Link>
         ---
         <button onClick={clear} style={clearButtonStyle}>
