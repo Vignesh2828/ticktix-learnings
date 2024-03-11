@@ -1,1 +1,0 @@
-# ticktix-learnings
