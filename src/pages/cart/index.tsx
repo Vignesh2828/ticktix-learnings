@@ -99,7 +99,7 @@ const cartPage = () => {
       </div>
       <br />
       <Link href={"/checkout"}>
-        <button style={homeButtonStyle}>Checkout</button>
+       <button style={homeButtonStyle}>Checkout</button>
       </Link>
     </>
   );
