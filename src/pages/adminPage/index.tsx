@@ -131,6 +131,7 @@ const loginStyle: React.CSSProperties = {
   width : '100%',
   height : '100vh',
   padding :'20px',
+  border: "2px solid #00bfff",
 };
 
 const inputStyle: React.CSSProperties = {
