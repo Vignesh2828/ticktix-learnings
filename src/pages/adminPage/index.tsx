@@ -117,30 +117,29 @@ const tableStyle: React.CSSProperties = {
 const tableOverAllStyle: React.CSSProperties = {
   border: "1px solid black",
   borderCollapse: "collapse",
-  width: "70%",
-  margin: "80px",
+  width: "100%%",
+  margin: "20px",
   fontFamily: "monospace",
   fontSize: "18px",
 };
 
 const loginStyle: React.CSSProperties = {
   display: "flex",
-  marginLeft: "750px",
-  marginTop: "300px",
-  width: "360px",
-  height: "350px",
-  padding: "20px",
-  border: "2px solid #00bfff ",
-  borderRadius: "20px",
+  justifyContent : 'center',
+  alignItems : 'center',
+  flexDirection : 'column',
+  width : '100%',
+  height : '100vh',
+  padding :'20px',
 };
 
 const inputStyle: React.CSSProperties = {
   height: "45px",
-  width: "300px",
+  width: "100%", // Full width
   border: "1px solid gray",
   borderRadius: "8px",
   padding: "10px",
-  margin: "10px",
+  margin: "10px 0", // Adjusted margin
   fontFamily: "monospace",
   fontSize: "18px",
 };
@@ -152,10 +151,10 @@ const labelStyle: React.CSSProperties = {
 
 const buttonStyle: React.CSSProperties = {
   height: "45px",
-  width: "120px",
+  width: "100%", // Full width
   border: "1px solid #ff8c00",
   borderRadius: "8px",
-  margin: "20px",
+  margin: "20px 0", // Adjusted margin
   color: "white",
   backgroundColor: "#ff8c00",
   fontSize: "18px",
