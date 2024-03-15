@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../store/productSlice";
 import styles from "./styles.module.css";
 import { view } from "../store/viewProductSlice";
+import style from './style.module.css'
 
 interface Rating {
   rate: number;
@@ -24,8 +25,8 @@ interface ProductValue {
 export default function ShowProduct() {
   const dispatch = useDispatch();
 
-  const { data: products, status } = useSelector((state:any) => state.product);
-  const cartInsideProducts = useSelector((state:any) => state.cart);
+  const { data: products, status } = useSelector((state: any) => state.product);
+  const cartInsideProducts = useSelector((state: any) => state.cart);
 
   useEffect(() => {
     dispatch(getProducts());
@@ -72,7 +73,7 @@ export default function ShowProduct() {
 
   return (
     <>
-      <div style={{display:"flex"}}>
+      <div style={{ display: "flex" }}>
         <div style={{ margin: "20px" }}>
           <Link href={"/cart"}>
             <button style={cartButtonStyle}>
@@ -88,6 +89,20 @@ export default function ShowProduct() {
         </div>
       </div>
 
+      <h1
+        style={{
+          textAlign: "center",
+          marginLeft: "auto",
+          marginRight: "auto",
+          maxWidth: "90%",
+          fontSize: "24px",
+          fontFamily:"sans-serif"
+        }}
+        className={style.blink_text}
+      >
+        Sharmila Thunikkadai😂😂
+      </h1>
+
       <div
         style={{
           display: "flex",
@@ -96,31 +111,36 @@ export default function ShowProduct() {
           fontSize: "15px",
         }}
       >
-        {products.map((product: ProductValue, index: Key | null | undefined) => (
-          <div key={index} style={cardStyle}>
-            <img src={product.image} alt={product.title} style={imageStyle} />
-            <h3>{product.title}</h3>
-            <p>{product.description.slice(0, 40)}</p>
-            <br />
-            <p>
-              Rating: <strong>{product.rating.rate}</strong>{" "}
-            </p>
-            <br />
-            <h4>Price :${product.price}</h4>
-            <br />
-            <p>Product left: {product.rating.count}</p>
-            <button style={buttonStyle} onClick={() => addToCart(product)}>
-              add to cart
-            </button>
-            <br />
-            <br />
-            <Link href={"/productBrief"}>
-              <button style={buttonStyle} onClick={() => viewProduct(product)}>
-                view product
+        {products.map(
+          (product: ProductValue, index: Key | null | undefined) => (
+            <div key={index} style={cardStyle}>
+              <img src={product.image} alt={product.title} style={imageStyle} />
+              <h3>{product.title}</h3>
+              <p>{product.description.slice(0, 40)}</p>
+              <br />
+              <p>
+                Rating: <strong>{product.rating.rate}</strong>{" "}
+              </p>
+              <br />
+              <h4>Price :${product.price}</h4>
+              <br />
+              <p>Product left: {product.rating.count}</p>
+              <button style={buttonStyle} onClick={() => addToCart(product)}>
+                add to cart
               </button>
-            </Link>
-          </div>
-        ))}
+              <br />
+              <br />
+              <Link href={"/productBrief"}>
+                <button
+                  style={buttonStyle}
+                  onClick={() => viewProduct(product)}
+                >
+                  view product
+                </button>
+              </Link>
+            </div>
+          )
+        )}
       </div>
     </>
   );
@@ -180,4 +200,4 @@ const adminButtonStyle: React.CSSProperties = {
   fontFamily: "monospace",
   cursor: "pointer",
   margin: "5px",
-}
+};
