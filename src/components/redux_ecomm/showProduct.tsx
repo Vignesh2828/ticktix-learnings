@@ -76,14 +76,14 @@ export default function ShowProduct() {
         <div style={{ margin: "20px" }}>
           <Link href={"/cart"}>
             <button style={cartButtonStyle}>
-              go to cart - {cartInsideProducts.length}
+              Go to cart - {cartInsideProducts.length}
             </button>
           </Link>
         </div>
 
         <div style={{ margin: "20px" }}>
           <Link href={"/adminPage"}>
-            <button style={adminButtonStyle}>admin login</button>
+            <button style={adminButtonStyle}>Admin login</button>
           </Link>
         </div>
       </div>
