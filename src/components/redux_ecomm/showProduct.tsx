@@ -100,7 +100,7 @@ export default function ShowProduct() {
         }}
         className={style.blink_text}
       >
-        Sharmila Thunikkadai😂😂
+        Omazon
       </h1>
 
       <div
