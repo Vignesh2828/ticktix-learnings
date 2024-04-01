@@ -12,3 +12,5 @@ export const store = configureStore({
         viewCustomers : customerSlice
     }
 })
+
+export type RootState = ReturnType<typeof store.getState>

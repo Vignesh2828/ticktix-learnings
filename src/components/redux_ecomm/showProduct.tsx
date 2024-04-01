@@ -6,7 +6,7 @@ import { getProducts } from "../store/productSlice";
 import styles from "./styles.module.css";
 import { view } from "../store/viewProductSlice";
 import style from './style.module.css'
-
+import { RootState } from "../store/store";
 interface Rating {
   rate: number;
   count: number;
@@ -25,8 +25,8 @@ interface ProductValue {
 export default function ShowProduct() {
   const dispatch = useDispatch();
 
-  const { data: products, status } = useSelector((state: any) => state.product);
-  const cartInsideProducts = useSelector((state: any) => state.cart);
+  const { data: products, status } = useSelector((state: RootState) => state.product);
+  const cartInsideProducts = useSelector((state: RootState) => state.cart);
 
   useEffect(() => {
     dispatch(getProducts());
@@ -130,7 +130,7 @@ export default function ShowProduct() {
               </button>
               <br />
               <br />
-              <Link href={"/productBrief"}>
+              <Link href={`/productBrief/${product.id}`}>
                 <button
                   style={buttonStyle}
                   onClick={() => viewProduct(product)}

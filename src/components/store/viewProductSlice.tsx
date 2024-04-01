@@ -5,6 +5,7 @@ interface Rating {
     count : number;
 }
 interface ProductValue {
+    id : number;
     title : string;
     image : string;
     description : string;
