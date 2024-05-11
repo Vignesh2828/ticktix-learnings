@@ -30,7 +30,7 @@ export default function ShowProduct() {
 
   useEffect(() => {
     dispatch(getProducts());
-  }, []);
+  }, [dispatch]);
 
   const addToCart = (product: ProductValue) => {
     dispatch(add(product));

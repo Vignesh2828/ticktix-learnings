@@ -8,6 +8,7 @@ import { RootState } from "@/components/store/store";
 import styles from "./styles.module.css";
 import { useEffect } from "react";
 import { getProducts } from "@/components/store/productSlice";
+import { getSpecificProducts } from "@/components/store/specificProductSlice";
 interface Rating {
   rate: number;
   count: number;
@@ -22,23 +23,40 @@ interface ProductValue {
   price: number;
 }
 
+interface SpecificProductState {
+
+      id: number;
+      title: string;
+      image: string;
+      description: string;
+      category: string; 
+      price: number;
+      rating: Rating
+    }
+
 export default function ProductBrief() {
   const router = useRouter();
   const { productId } = router.query;
   const productID = typeof productId === 'string' ? parseInt(productId) : 0;
-  const selectedProduct = useSelector((state: RootState) => {
-    return state.viewProduct.find((product) => product.id === productID);
-  });
-  const dispatch = useDispatch();
-  
+  console.log("router id is", productID)
+
+  const specificProducts = useSelector((state:RootState) => state.viewSpecificProduct.data)
+  const loading = useSelector((state:RootState) => state.viewSpecificProduct.loading)
+  console.log("specificProducts:", specificProducts);
+
+   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getProducts())
-  },[productID])
+    if (productId) {
+      dispatch(getSpecificProducts(productID));
+    }
+  }, [dispatch, productID, productId]);
+
+
   const addToCart = (product: ProductValue) => {
     dispatch(add(product));
   };
 
-  if (!selectedProduct) {
+  if (loading) {
     return (
       <div
         style={{
@@ -59,9 +77,10 @@ export default function ProductBrief() {
   return (
     <>
       <div style={{ padding: "20px", border: "1px solid #ccc"}}>
-        <ul style={{ listStyle: "none", padding: 0 }}>
+        {specificProducts.map((product: SpecificProductState, index: Key | null | undefined) =>(
+          <ul style={{ listStyle: "none", padding: 0 }}>
           <li
-            key={selectedProduct.id}
+            key={product.id}
             style={{
               marginBottom: "10px",
               borderBottom: "1px solid #ddd",
@@ -73,11 +92,11 @@ export default function ProductBrief() {
           >
             <span style={{ flex: "1" }}>
               <img
-                src={selectedProduct.image}
-                alt={selectedProduct.title}
+                src={product.image}
+                alt={product.title}
                 style={imageStyle}
               />
-              <h1 style={{ fontFamily: "monospace" }}>{selectedProduct.title}</h1>
+              <h1 style={{ fontFamily: "monospace" }}>{product.title}</h1>
               <p
                 style={{
                   fontFamily: "sans-serif",
@@ -85,27 +104,27 @@ export default function ProductBrief() {
                   width: "400px",
                 }}
               >
-                {selectedProduct.description}
+                {product.description}
               </p>
               <br />
-              <h3>Rating : {selectedProduct.rating.rate} out of 5</h3>
+              <h3>Rating : {product.rating.rate} out of 5</h3>
               <br />
               <h3 style={{ fontFamily: "cursive" }} className={style.blink_text}>
-                Only {selectedProduct.rating.count} left hurry up!
+                Only {product.rating.count} left hurry up!
               </h3>
               <br />
-              <h1>${selectedProduct.price}</h1>
+              <h1>${product.price}</h1>
               <br />
               <button
                 style={cartButtonStyle}
-                onClick={() => addToCart(selectedProduct)}
+                onClick={() => addToCart(product)}
               >
                 Add to cart
               </button>
               <Link href={"/checkout"}>
                 <button
                   style={buttonStyle}
-                  onClick={() => addToCart(selectedProduct)}
+                  onClick={() => addToCart(product)}
                 >
                   Buy Now
                 </button>
@@ -113,6 +132,7 @@ export default function ProductBrief() {
             </span>
           </li>
         </ul>
+        ))}
       </div>
     </>
   );
